@@ -12,41 +12,38 @@
       crossorigin="anonymous"
     />
   </head>
-
   <body>
     <div class="container mt-3">
-      <div class="fs-3">New form</div>
-      <form action="/board/form" method="post">
       <table>
         <tr>
           <th>Title</th>
           <td>
-            <input class="form-control" type="text" name="title" id="" />
+            Food
           </td>
         </tr>
         <tr>
           <th>Content</th>
           <td>
-            <input class="form-control" type="text" name="content" id="" />
+            Favorite Food
           </td>
         </tr>
         <tr>
           <th>UserName</th>
           <td>
-            <input class="form-control" type="text" name="userName" id="" />
+            SOM
           </td>
         </tr>
         <tr>
           <th>Date</th>
           <td>
-            <input class="form-control" type="text" name="date" id="" />
+            2023-01-05
           </td>
         </tr>
         <tr>
-          <td><button type="submit" class="btn btn-danger">submit</button></td>
+          <td><a href="/board/edit" class="btn btn-danger">Edit</a></td>
+          <td><a href="/board/list" class="btn btn-secondary">Back</a></td>
         </tr>
       </table>
-      </form>
     </div>
   </body>
 </html>

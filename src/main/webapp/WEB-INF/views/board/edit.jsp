@@ -12,11 +12,10 @@
       crossorigin="anonymous"
     />
   </head>
-
   <body>
-    <div class="container mt-3">
-      <div class="fs-3">New form</div>
-      <form action="/board/form" method="post">
+  <div class="container mt-3">
+    <div class="fs-4">Edit ! JSP</div>
+    <form action="/board/list" method="post">
       <table>
         <tr>
           <th>Title</th>
@@ -43,10 +42,10 @@
           </td>
         </tr>
         <tr>
-          <td><button type="submit" class="btn btn-danger">submit</button></td>
+          <td colspa="2"><button type="submit" class="btn btn-danger">Done</button></td>
         </tr>
       </table>
-      </form>
-    </div>
+    </form>
+  </div>
   </body>
 </html>
