@@ -14,9 +14,9 @@
   </head>
   <body>
   <div class="container mt-3">
-    <div class="fs-4">Edit ! JSP</div>
+    <div class="fs-3 mb-3">Edit Content</div>
     <form action="/board/list" method="post">
-      <table>
+      <table class="table">
         <tr>
           <th>Title</th>
           <td>
@@ -41,8 +41,11 @@
             <input class="form-control" type="text" name="date" id="" />
           </td>
         </tr>
-        <tr>
-          <td colspa="2"><button type="submit" class="btn btn-danger">Done</button></td>
+        <tr class="text-center">
+          <td colspan="2">
+            <button type="submit" class="btn btn-danger">Done</button>
+            <a href="/board/view" class="btn btn-secondary">Back</a>
+          </td>
         </tr>
       </table>
     </form>

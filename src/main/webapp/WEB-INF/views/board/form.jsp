@@ -15,9 +15,9 @@
 
   <body>
     <div class="container mt-3">
-      <div class="fs-3">New form</div>
-      <form action="/board/form" method="post">
-      <table>
+      <div class="fs-3 mb-3">New Form</div>
+      <form action="/board/list" method="post">
+      <table class="table">
         <tr>
           <th>Title</th>
           <td>
@@ -42,8 +42,11 @@
             <input class="form-control" type="text" name="date" id="" />
           </td>
         </tr>
-        <tr>
-          <td><button type="submit" class="btn btn-danger">submit</button></td>
+        <tr class="text-center">
+          <td colspan="2">
+            <button type="submit" class="btn btn-danger">Submit</button>
+            <a href="/board/list" class="btn btn-secondary">Back</a>
+          </td>
         </tr>
       </table>
       </form>

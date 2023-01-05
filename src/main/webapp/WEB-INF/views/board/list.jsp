@@ -15,8 +15,8 @@
 
   <body>
     <div class="container mt-3">
-      <div class="fs-3">Board List</div>
-      <table class="table table-striped table-hover">
+      <div class="fs-3 mb-3">Board List</div>
+      <table class="table table-hover">
         <thead>
           <tr>
             <th>#</th>
@@ -38,7 +38,7 @@
           </tr>
           <tr>
             <th>Form</th>
-            <td colspan="4">Board Form</td>
+            <td colspan="4">New Board Form</td>
             <td><a href="/board/form" class="btn btn-danger btn-sm">NEW</a></td>
           </tr
         </tbody>

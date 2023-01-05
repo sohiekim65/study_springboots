@@ -14,9 +14,10 @@
   </head>
   <body>
     <div class="container mt-3">
-      <table>
+      <div class="fs-3 mb-3">View Content</div>
+      <table class="table">
         <tr>
-          <th>Title</th>
+          <th scope="">Title</th>
           <td>
             Food
           </td>
@@ -39,9 +40,11 @@
             2023-01-05
           </td>
         </tr>
-        <tr>
-          <td><a href="/board/edit" class="btn btn-danger">Edit</a></td>
-          <td><a href="/board/list" class="btn btn-secondary">Back</a></td>
+        <tr class="text-center">
+          <td colspan="2">
+            <a href="/board/edit" class="btn btn-danger">Edit</a>
+            <a href="/board/list" class="btn btn-secondary">Back</a>
+          </td>
         </tr>
       </table>
     </div>
