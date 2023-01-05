@@ -13,7 +13,6 @@ public class BoardController {
     }
     @RequestMapping(value = "/board/form", method = RequestMethod.POST)
     public String formPost(){
-        // insert biz
         return "/WEB-INF/views/board/list.jsp";
     }
     @RequestMapping(value = {"/board", "/board/list"}, method = RequestMethod.GET)
