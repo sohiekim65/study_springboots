@@ -16,7 +16,7 @@
   <body>
     <div class="container mt-3">
       <div class="fs-3 mb-3">New Form</div>
-      <form action="/board/list" method="post">
+      <form action="/board/form" method="post">
       <table class="table">
         <tr>
           <th>Title</th>
