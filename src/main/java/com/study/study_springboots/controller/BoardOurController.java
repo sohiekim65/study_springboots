@@ -1,9 +1,16 @@
 package com.study.study_springboots.controller;
 
+import java.util.ArrayList;
+
+import javax.xml.crypto.Data;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.study.study_springboots.beans.BoardBean;
+import com.study.study_springboots.service.DataInfors;
 
 // - 항목 : title, content, userName, date
 // - CRUD :
@@ -23,11 +30,18 @@ public class BoardOurController {
     public ModelAndView list(){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("firstString", "firstValue");
+        DataInfors dataInfors = new DataInfors();
+        ArrayList<BoardBean> boardList = dataInfors.getDataListWithBoardBean();
+        modelAndView.addObject("boardList", boardList);
+        
         modelAndView.setViewName("board_our/list");
         return modelAndView; // --> Dispatcher Servlet으로 값이 들어감.
     }
     @RequestMapping(value = "/view", method = RequestMethod.GET)    // "/board_our/view"
     public ModelAndView view(ModelAndView modelAndView){
+        DataInfors dataInfors = new DataInfors();
+        BoardBean boardBean = dataInfors.getDataWithMemberBean();
+        modelAndView.addObject("boardBean", boardBean);
         modelAndView.setViewName("board_our/view");
         return modelAndView;
     }

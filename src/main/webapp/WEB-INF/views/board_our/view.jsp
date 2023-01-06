@@ -13,30 +13,31 @@
     />
   </head>
   <body>
-  <div class="container"> 
-<table class="table">
+    <div class="container"> 
+      ${boardBean}
+      <table class="table">
         <thead>
-            <tr>
-                <th class="col-1"scope=>Title</th>
-                <td class="col-6">Hello</td>
-                <th >user name</th>
-                <td>Mark</td>
-                <th >date</th>
-                <td>22.11.11</td>
-            </tr>
+          <tr>
+              <th class="col-1"scope=>Title</th>
+              <td class="col-6">Hello : ${boardBean.title}</td>
+              <th>user name</th>
+              <td>Mark : ${boardBean.userName}</td>
+              <th>date</th>
+              <td>22.11.11</td>
+          </tr>
         </thead>  
         <tbody>
-       <td colspan=6>content</td>
+          <td colspan=6>${boardBean.content}</td>
         </tbody>
-    </table>
-    <div>
-      <form action="/board_our/list">
-        <button>go list</button>
-      </form>
-      <form action="/board_our/edit" method="post">
-        <button>edit</button>
-      </form>
-    </div>
+      </table>
+      <div>
+        <form action="/board_our/list">
+          <button>go list</button>
+        </form>
+        <form action="/board_our/edit" method="post">
+          <button>edit</button>
+        </form>
+      </div>
     </div>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
