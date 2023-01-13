@@ -1,3 +1,6 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -15,34 +18,30 @@
 
   <body>
     <div class="container mt-3">
-      <div class="fs-3 mb-3">Board List</div>
+      <div class="fs-3 mb-3">게시판</div>
       <table class="table table-hover">
         <thead>
           <tr>
             <th>#</th>
-            <th>Title</th>
-            <th>Content</th>
-            <th>UserName</th>
-            <th>Date</th>
-            <th>Btn</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>작성일</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th>1</th>
-            <td>Food</td>
-            <td>Favorite Food</a></td>
-            <td>SOM</td>
-            <td>2023-01-05</td>
-            <td><a href="/board/view" class="btn btn-secondary btn-sm">CLICK</a></td>
-          </tr>
-          <tr>
-            <th>Form</th>
-            <td colspan="4">New Board Form</td>
-            <td><a href="/board/form" class="btn btn-danger btn-sm">NEW</a></td>
-          </tr
+          <c:forEach var="board" items="${boardList}" varStatus="status">
+            <tr>
+              <th>${status.count}</th>
+              <td><a href="/board/view?title=${board.title}">${board.title}</a></td>
+              <td>${board.userName}</td>
+              <td>${board.date}</td>
+            </tr>
+          </c:forEach>
         </tbody>
       </table>
+      <div class="">
+        <form action="/board/form"><button class="btn btn-danger">글쓰기</button></form></td>
+      </div>
     </div>
   </body>
 </html>

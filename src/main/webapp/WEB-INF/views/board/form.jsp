@@ -1,3 +1,6 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -15,40 +18,38 @@
 
   <body>
     <div class="container mt-3">
-      <div class="fs-3 mb-3">New Form</div>
-      <form action="/board/form" method="post">
-      <table class="table">
-        <tr>
-          <th>Title</th>
-          <td>
-            <input class="form-control" type="text" name="title" id="" />
-          </td>
-        </tr>
-        <tr>
-          <th>Content</th>
-          <td>
-            <input class="form-control" type="text" name="content" id="" />
-          </td>
-        </tr>
-        <tr>
-          <th>UserName</th>
-          <td>
-            <input class="form-control" type="text" name="userName" id="" />
-          </td>
-        </tr>
-        <tr>
-          <th>Date</th>
-          <td>
-            <input class="form-control" type="text" name="date" id="" />
-          </td>
-        </tr>
-        <tr class="text-center">
-          <td colspan="2">
-            <button type="submit" class="btn btn-danger">Submit</button>
-            <a href="/board/list" class="btn btn-secondary">Back</a>
-          </td>
-        </tr>
-      </table>
+      <div class="fs-3 mb-3">게시판 글쓰기</div>
+      <form action="/board/save" method="post">
+        <table class="table">
+          <tr>
+            <th>제목</th>
+            <td>
+              <input class="form-control" type="text" name="title" id="" />
+            </td>
+          </tr>
+          <tr>
+            <th>내용</th>
+            <td>
+              <input class="form-control" type="text" name="content" id="" />
+            </td>
+          </tr>
+          <tr>
+            <th>작성자</th>
+            <td>
+              <input class="form-control" type="text" name="userName" id="" />
+            </td>
+          </tr>
+          <tr>
+            <th>작성일</th>
+            <td>
+              <input class="form-control" type="text" name="date" id="" />
+            </td>
+          </tr>
+        </table>
+        <div class="d-flex">
+          <button type="submit" class="btn btn-danger me-1">제출</button>
+          <a href="/board/list" class="btn btn-secondary">이전</a>
+        </div>
       </form>
     </div>
   </body>

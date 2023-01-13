@@ -18,8 +18,8 @@
       <div>Main ! JSP</div>
       <div>Board</div>
       <div>
-        <a href="/board/form"
-          >/board/form BoardController form() /board/form.jsp</a
+        <a href="/board/list"
+          >/board/form BoardController form() /board/list.jsp</a
         >
       </div>
       <div>

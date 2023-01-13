@@ -1,3 +1,6 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -14,39 +17,41 @@
   </head>
   <body>
     <div class="container mt-3">
-      <div class="fs-3 mb-3">View Content</div>
+      <div class="fs-3 mb-3">게시글 상세보기</div>
       <table class="table">
         <tr>
-          <th scope="">Title</th>
+          <th scope="">제목</th>
           <td>
-            Food
+              ${boardBean.title}
           </td>
         </tr>
         <tr>
-          <th>Content</th>
+          <th>내용</th>
           <td>
-            Favorite Food
+            ${boardBean.content}
           </td>
         </tr>
         <tr>
-          <th>UserName</th>
+          <th>작성자</th>
           <td>
-            SOM
+            ${boardBean.userName}
           </td>
         </tr>
         <tr>
-          <th>Date</th>
+          <th>작성일</th>
           <td>
-            2023-01-05
-          </td>
-        </tr>
-        <tr class="text-center">
-          <td colspan="2">
-            <a href="/board/edit" class="btn btn-danger">Edit</a>
-            <a href="/board/list" class="btn btn-secondary">Back</a>
+            ${boardBean.date}
           </td>
         </tr>
       </table>
+      <div class="d-flex">
+        <form action="/board/list">
+          <button class="btn btn-danger me-1">이전</button>
+        </form>
+        <form action="/board/edit" method="post">
+          <button class="btn btn-secondary">수정</button>
+        </form>
+      </div>
     </div>
   </body>
 </html>

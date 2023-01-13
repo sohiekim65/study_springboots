@@ -1,3 +1,6 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -14,40 +17,37 @@
   </head>
   <body>
   <div class="container mt-3">
-    <div class="fs-3 mb-3">Edit Content</div>
-    <form action="/board/form" method="post">
+    <div class="fs-3 mb-3">글 수정하기</div>
+    <form action="/board/save" method="post">
       <table class="table">
         <tr>
-          <th>Title</th>
+          <th>제목</th>
           <td>
             <input class="form-control" type="text" name="title" id="" />
           </td>
         </tr>
         <tr>
-          <th>Content</th>
+          <th>내용</th>
           <td>
             <input class="form-control" type="text" name="content" id="" />
           </td>
         </tr>
         <tr>
-          <th>UserName</th>
+          <th>작성자</th>
           <td>
             <input class="form-control" type="text" name="userName" id="" />
           </td>
         </tr>
         <tr>
-          <th>Date</th>
+          <th>작성일</th>
           <td>
             <input class="form-control" type="text" name="date" id="" />
           </td>
         </tr>
-        <tr class="text-center">
-          <td colspan="2">
-            <button type="submit" class="btn btn-danger">Done</button>
-            <a href="/board/view" class="btn btn-secondary">Back</a>
-          </td>
-        </tr>
       </table>
+      <div>
+        <button type="submit" class="btn btn-danger">완료</button>
+      </div>
     </form>
   </div>
   </body>
