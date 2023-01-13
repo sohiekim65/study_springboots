@@ -27,11 +27,6 @@ public class BoardController {
         modelAndView.setViewName("/board/form");
         return modelAndView;
     }
-    // @RequestMapping(value = "/form", method = RequestMethod.POST)
-    // public ModelAndView formPost(ModelAndView modelAndView){
-    //     modelAndView.setViewName("/board/list");
-    //     return modelAndView;
-    // }
     @RequestMapping(value = {"/", "/list"}, method = RequestMethod.GET)
     public ModelAndView list(ModelAndView modelAndView){
         DataInfors dataInfors = new DataInfors();
