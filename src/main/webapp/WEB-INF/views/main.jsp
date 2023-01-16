@@ -27,6 +27,9 @@
           >/board_our BoardOurController list() /board_our/list.jsp</a
         >
       </div>
+      <div>
+        <a href="/jstlformats"> jstl_formats.jsp</a>
+      </div>
     </div>
   </body>
 </html>

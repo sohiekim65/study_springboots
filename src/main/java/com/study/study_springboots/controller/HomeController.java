@@ -25,4 +25,9 @@ public class HomeController {
         int i = 0;
         return "home.html"; // html은 spring에서 해석하지 않고 jsp만 해석한다(jsp를 해석할 수 있는 건 jasper 라이브러리 덕분).
     }
+    @RequestMapping(value = "/jstlformats") 
+    public String jstlformats(){
+        int i = 0;
+        return "jstl_formats"; 
+    }
 }
