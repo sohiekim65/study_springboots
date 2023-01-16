@@ -52,18 +52,21 @@ public class DataInfors {
         boardBean.setTitle("Mark");
         boardBean.setContent("Otto");
         boardBean.setUserName("@mdo");
+        boardBean.setDate("22.11.11");
         membersList.add(boardBean);
 
         boardBean = new BoardBean();
         boardBean.setTitle("Jacob");
         boardBean.setContent("Thornton");
         boardBean.setUserName("@fat");
+        boardBean.setDate("22.11.11");
         membersList.add(boardBean);
 
         boardBean = new BoardBean();
         boardBean.setTitle("Larry");
         boardBean.setContent("Bird");
         boardBean.setUserName("@twitter");
+        boardBean.setDate("22.11.11");
         membersList.add(boardBean);
 
         return membersList;
@@ -119,5 +122,37 @@ public class DataInfors {
             }
         }
         return boardBean;
+    }
+
+    // 0116 실습 - edit hashMap으로 출력
+    public HashMap<String, Object> getDataByUid(String title){
+        ArrayList<BoardBean> viewList = getDataListWithBoardBean();
+        HashMap<String, Object> hashMap = new HashMap<>();
+        for(int i = 0; i < viewList.size(); i++){
+            BoardBean view = viewList.get(i);
+            if(title.equals(view.getTitle())){
+                hashMap.put("title", view.getTitle());
+                hashMap.put("content", view.getContent());
+                hashMap.put("userName", view.getUserName());
+                hashMap.put("date", view.getDate());
+                break;
+            } else {
+                hashMap.put("title", "-");
+                hashMap.put("content", "-");
+                hashMap.put("userName", "-");
+                hashMap.put("date", "-");
+            }
+        }
+        return hashMap;
+    }
+
+    // 0116 실습 - view edit한 데이터 출력
+    public HashMap<String, Object> getDataByParam(HashMap<String, String> params){
+        HashMap<String, Object> viewData = new HashMap<>();
+        viewData.put("title", params.get("title"));
+        viewData.put("userName", params.get("userName"));
+        viewData.put("content",  params.get("content"));
+        viewData.put("date", params.get("date"));
+        return viewData;
     }
 }

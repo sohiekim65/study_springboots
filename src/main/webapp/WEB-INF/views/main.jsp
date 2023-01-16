@@ -30,6 +30,9 @@
       <div>
         <a href="/jstlformats"> jstl_formats.jsp</a>
       </div>
+      <div>
+        <a href="/notice/"> notice/list.jsp</a>
+      </div>
     </div>
   </body>
 </html>

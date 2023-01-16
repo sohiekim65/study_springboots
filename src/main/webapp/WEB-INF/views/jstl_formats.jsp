@@ -37,19 +37,17 @@
     <div>Locale Code : http://www.lingoes.net/en/translator/langcode.htm</div>
     <c:set var="num_third" value="1234567.89" />
     <c:set var="date_third" value="<%= new java.util.Date() %>" />
-    <div>대한민국 나라 : <fmt:setLocale value="ko-KR" /><%=response.getLocale() %></div>
+    <div>대한민국 나라 : <fmt:setLocale value="ko-KR" scope="session" /><%=response.getLocale() %></div>
     <div>통화 : <fmt:formatNumber value="${num_third}" type="currency" /></div>
     <div>날짜 : <fmt:formatDate value="${date_third}" type="both" /></div>
 
-    <div>미국 나라 : <fmt:setLocale value="en-US" /><%=response.getLocale() %></div>
+    <div>미국 나라 : <fmt:setLocale value="en-US" scope="session" /><%=response.getLocale() %></div>
     <div>통화 : <fmt:formatNumber value="${num_third}" type="currency" /></div>
     <div>날짜 : <fmt:formatDate value="${date_third}" type="both" /></div>
 
-    <div>일본 나라 : <fmt:setLocale value="ja-JP" /><%=response.getLocale() %></div>
+    <div>일본 나라 : <fmt:setLocale value="ja-JP" scope="session" /><%=response.getLocale() %></div>
     <div>통화 : <fmt:formatNumber value="${num_third}" type="currency" /></div>
     <div>날짜 : <fmt:formatDate value="${date_third}" type="both" /></div>
-    <div></div>
-    <div></div>
 
   </body>
 </html>
