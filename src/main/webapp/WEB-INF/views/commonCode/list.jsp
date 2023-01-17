@@ -7,7 +7,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Notice List</title>
+    <title>CommonCodeController</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -16,31 +16,26 @@
     />
   </head>
   <body>
-    <div>notice/list</div>
+    <div>commonCode/list</div>
     <div class="container"> 
       <table class="table table-hover">
         <thead>
           <tr>
-            <th>#</th>
-            <th>Title</th>
-            <th>userName</th>
-            <th>date</th>
+            <th>COMMON_CODE_ID</th>
+            <th>NAME</th>
+            <th>ORDER_NUMBER</th>
           </tr>
         </thead>
         <tbody>
-          <c:forEach var="notice" items="${noticeList}" varStatus="status">
+          <c:forEach var="common" items="${commonResult}" varStatus="status">
             <tr>
-              <th>${status.count}</th>
-              <td><a href="/notice/edit/${notice.title}">${notice.title}</a></td>
-              <td>${notice.userName}</td>
-              <td>${notice.date}</td>
+              <td>${common.COMMON_CODE_ID}</td>
+              <td>${common.NAME}</td>
+              <td>${common.ORDER_NUMBER}</td>
             </tr>
           </c:forEach>
         </tbody>
       </table>
-      <%-- <div>
-        <form action="/notice/form"><button>form</button></form><div>
-      </div> --%>
     </div>
 
     <script
