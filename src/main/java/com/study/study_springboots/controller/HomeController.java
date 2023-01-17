@@ -1,11 +1,19 @@
 package com.study.study_springboots.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.study.study_springboots.dao.HomeDao;
+
 
 // 서블릿에서 했었던 urlMapping과 componentScan을 @Controller, @RequestMapping
 @Controller // 이 클래스에다가 Controller라고 캡을 씌워서 문지기가 기억하도록
 public class HomeController {
+
+    @Autowired
+    HomeDao homeDao;    // 인스턴스화
+
     @RequestMapping(value = {"", "/", "/main"}) // url이 이 3개면 main.jsp로 들어오도록(url여러개 가능) 
     public String main(){
         int i = 0;
@@ -13,6 +21,7 @@ public class HomeController {
     }
     @RequestMapping(value = "/home") 
     public void home(){
+        Object result = homeDao.getList();
         int i = 0;
     }
     @RequestMapping(value = "/homejsp") // http://localhost:8080/homejsp
