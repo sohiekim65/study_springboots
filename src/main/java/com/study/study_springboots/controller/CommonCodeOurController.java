@@ -5,6 +5,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,6 +26,15 @@ public class CommonCodeOurController {
         Object resultMap = commonCodeOurService.getList(params); // params가 서비스의 dataMap
         modelAndView.addObject("resultMap", resultMap);
         modelAndView.setViewName("commonCode_our/list");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = {"/edit/{uniqueId}"}, method = RequestMethod.GET) // --> uniqueId는 list.jsp에서 넘어오는 uid
+    public ModelAndView edit(@RequestParam Map<String, Object> params, @PathVariable String uniqueId, ModelAndView modelAndView) {
+        params.put("COMMON_CODE_ID", uniqueId);
+        Object resultMap = commonCodeOurService.getOne(params);
+        modelAndView.addObject("resultMap", resultMap);
+        modelAndView.setViewName("commonCode_our/edit");
         return modelAndView;
     }
 }

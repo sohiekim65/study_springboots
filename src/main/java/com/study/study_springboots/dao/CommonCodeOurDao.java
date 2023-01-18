@@ -16,4 +16,9 @@ public class CommonCodeOurDao {
         Object result = sqlSessionTemplate.selectList(sqlMapId, dataMap); // return 값이 list인데 통틀어 Object로
         return result;
     }
+
+    public Object getOne(String sqlMapId, Object dataMap) {
+        Object result = sqlSessionTemplate.selectOne(sqlMapId, dataMap);
+        return result;
+    }
 }

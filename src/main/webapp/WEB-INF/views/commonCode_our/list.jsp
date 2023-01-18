@@ -21,9 +21,11 @@
 						name="COMMON_CODE_ID"  />
 					</td>
 					<td>
-						<button class="btn btn-link viewPopup" type="button">
-							${resultData.COMMON_CODE_ID}
-						</button>
+						<form action="/commonCodeOur/edit/${resultData.COMMON_CODE_ID}" method="get">
+							<button class="btn btn-link viewPopup">
+								${resultData.COMMON_CODE_ID}
+							</button>
+						</form>
 					</td>
 					<td>${resultData.NAME}</td>
 					<td class="text-center">
