@@ -31,10 +31,13 @@
         <a href="/jstlformats"> jstl_formats.jsp</a>
       </div>
       <div>
-        <a href="/notice/">NoticeController list notice/list.jsp</a>
+        <a href="/notice/">NoticeController list /notice/list.jsp</a>
       </div>
       <div>
-        <a href="/commonCode/">CommonCodeController list commonCode/list.jsp</a>
+        <a href="/commonCode/">CommonCodeController list /commonCode/list.jsp</a>
+      </div>
+      <div>
+        <a href="/commonCodeOur/">CommonCodeOurController list /commonCodeOur/list.jsp</a>
       </div>
     </div>
   </body>
