@@ -23,7 +23,8 @@ public class CommonCodeOurController {
 
     @RequestMapping(value = {"/insert"}, method = RequestMethod.POST) 
     public ModelAndView insert(@RequestParam Map<String, Object> params, ModelAndView modelAndView) {
-        commonCodeOurService.insertOne(params);
+        Object resultMap = commonCodeOurService.insertAndGetList(params);
+        modelAndView.addObject("resultMap", resultMap);
         modelAndView.setViewName("commonCode_our/list");
         return modelAndView;
     }

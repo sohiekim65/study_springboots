@@ -25,6 +25,13 @@ public class CommonCodeOurService {
         return result;
     }
 
+    // insert를 하면서 List를 뱉어내는 function
+    public Object insertAndGetList(Object dataMap) {
+        Object result = this.insertOne(dataMap);
+        result = this.getList(dataMap);
+        return result;
+    }
+
     public Object getList(Object dataMap) { // dataMap은 브라우저에서 넘어오니까 파라미터로
         String sqlMapId = "CommonCodeOur.selectListByUID"; // 사용자가 넘겨주는 게 아니라 여기서 세팅
         Object result = commonCodeOurDao.getList(sqlMapId, dataMap);
