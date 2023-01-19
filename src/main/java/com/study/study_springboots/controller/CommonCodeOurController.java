@@ -45,7 +45,6 @@ public class CommonCodeOurController {
 
     @RequestMapping(value = {"/update"}, method = RequestMethod.POST) // --> @GetMapping(value = "/list") // 동일 코드
     public ModelAndView update(@RequestParam Map<String, Object> params, ModelAndView modelAndView) {
-        commonCodeOurService.updateAndGetList(params);
         Object resultMap = commonCodeOurService.updateAndGetList(params);
         modelAndView.addObject("resultMap", resultMap);
         modelAndView.setViewName("commonCode_our/list");
