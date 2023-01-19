@@ -21,7 +21,38 @@ public class CommonCodeOurController {
     @Autowired
     CommonCodeOurService commonCodeOurService; // DI
 
-    @RequestMapping(value = {"", "/", "/list"}, method = RequestMethod.GET) // --> @GetMapping(value = "/list") // 동일 코드
+    @RequestMapping(value = {"/insert"}, method = RequestMethod.POST) 
+    public ModelAndView insert(@RequestParam Map<String, Object> params, ModelAndView modelAndView) {
+        commonCodeOurService.insertOne(params);
+        modelAndView.setViewName("commonCode_our/list");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = {"/form"}, method = RequestMethod.GET)
+    public ModelAndView form(@RequestParam Map<String, Object> params, ModelAndView modelAndView) {
+        modelAndView.setViewName("commonCode_our/edit");    // edit화면 재사용
+        return modelAndView;
+    }
+
+    @RequestMapping(value = {"/delete/{uniqueId}"}, method = RequestMethod.POST) // --> uniqueId는 list.jsp에서 넘어오는 uid
+    public ModelAndView delete(@RequestParam Map<String, Object> params, @PathVariable String uniqueId, ModelAndView modelAndView) {
+        params.put("COMMON_CODE_ID", uniqueId);
+        Object resultMap = commonCodeOurService.deleteAndGetList(params);
+        modelAndView.addObject("resultMap", resultMap);
+        modelAndView.setViewName("commonCode_our/list");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = {"/update"}, method = RequestMethod.POST) // --> @GetMapping(value = "/list") // 동일 코드
+    public ModelAndView update(@RequestParam Map<String, Object> params, ModelAndView modelAndView) {
+        commonCodeOurService.updateAndGetList(params);
+        Object resultMap = commonCodeOurService.updateAndGetList(params);
+        modelAndView.addObject("resultMap", resultMap);
+        modelAndView.setViewName("commonCode_our/list");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = {"", "/", "/list"}, method = RequestMethod.GET)
     public ModelAndView list(@RequestParam Map<String, Object> params, ModelAndView modelAndView) {
         Object resultMap = commonCodeOurService.getList(params); // params가 서비스의 dataMap
         modelAndView.addObject("resultMap", resultMap);
@@ -29,7 +60,7 @@ public class CommonCodeOurController {
         return modelAndView;
     }
 
-    @RequestMapping(value = {"/edit/{uniqueId}"}, method = RequestMethod.GET) // --> uniqueId는 list.jsp에서 넘어오는 uid
+    @RequestMapping(value = {"/edit/{uniqueId}"}, method = RequestMethod.GET) 
     public ModelAndView edit(@RequestParam Map<String, Object> params, @PathVariable String uniqueId, ModelAndView modelAndView) {
         params.put("COMMON_CODE_ID", uniqueId);
         Object resultMap = commonCodeOurService.getOne(params);
