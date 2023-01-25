@@ -61,4 +61,11 @@ public class CommonCodeOurService {
         Object result = commonCodeOurDao.delete(sqlMapId, dataMap);
         return result;
     }
+
+    // dao는 재활용
+    public Object deleteMulti(Object dataMap) {
+        String sqlMapId = "CommonCodeOur.deleteMultiByUIDs";
+        Object result = commonCodeOurDao.delete(sqlMapId, dataMap);
+        return result;
+    }
 }
