@@ -18,6 +18,13 @@ public class CommonCodeOurService {
         return result;
     }
 
+    // deleteMulti를 하면서 List를 뱉어내는 function
+    public Object deleteMultiAndGetList(Object dataMap) {
+        Object result = this.deleteMulti(dataMap); // 아래 deleteMulti function 불러오기
+        result = this.getList(dataMap);
+        return result;
+    }
+
     // update를 하면서 List를 뱉어내는 function
     public Object updateAndGetList(Object dataMap) {
         Object result = this.updateOne(dataMap); // 아래 update function 불러오기
