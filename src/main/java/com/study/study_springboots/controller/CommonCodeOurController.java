@@ -44,6 +44,15 @@ public class CommonCodeOurController {
         return modelAndView;
     }
 
+    @RequestMapping(value = {"/deleteMulti"}, method = RequestMethod.POST) // --> uniqueId는 list.jsp에서 넘어오는 uid
+    public ModelAndView deleteMulti(@RequestParam Map<String, Object> params, ModelAndView modelAndView) {
+        // params.put("COMMON_CODE_ID", uniqueId);
+        // Object resultMap = commonCodeOurService.deleteAndGetList(params);
+        // modelAndView.addObject("resultMap", resultMap);
+        modelAndView.setViewName("commonCode_our/list");
+        return modelAndView;
+    }
+
     @RequestMapping(value = {"/update"}, method = RequestMethod.POST) // --> @GetMapping(value = "/list") // 동일 코드
     public ModelAndView update(@RequestParam Map<String, Object> params, ModelAndView modelAndView) {
         Object resultMap = commonCodeOurService.updateAndGetList(params);

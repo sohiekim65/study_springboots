@@ -20,14 +20,14 @@ public class CommonCodeOurService {
 
     // update를 하면서 List를 뱉어내는 function
     public Object updateAndGetList(Object dataMap) {
-        Object result = this.updateOne(dataMap);
+        Object result = this.updateOne(dataMap); // 아래 update function 불러오기
         result = this.getList(dataMap);
         return result;
     }
 
     // insert를 하면서 List를 뱉어내는 function
     public Object insertAndGetList(Object dataMap) {
-        Object result = this.insertOne(dataMap);
+        Object result = this.insertOne(dataMap); // 아래 insert function 불러오기
         result = this.getList(dataMap);
         return result;
     }
