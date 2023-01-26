@@ -31,8 +31,8 @@ public class CommonCodeOurController {
 
     @RequestMapping(value = {"/insert"}, method = RequestMethod.POST) 
     public ModelAndView insert(MultipartHttpServletRequest multipartHttpServletRequest
-                            , @RequestParam Map<String, Object> params
-                            , ModelAndView modelAndView) throws IOException {
+                    , @RequestParam Map<String, Object> params
+                    , ModelAndView modelAndView) throws IOException {
 
         String registerSeq = multipartHttpServletRequest.getParameter("REGISTER_SEQ");
         
@@ -44,6 +44,7 @@ public class CommonCodeOurController {
         BufferedWriter bufferedWriter = Files.newBufferedWriter(Paths.get(relativePath+fileName));
         // 이제부터 쓸거야
         bufferedWriter.write(new String(multipartFile.getBytes())); // 뭉치를 가져오고 그 뭉치를 String으로 바꾸고 write해주면 공간에 써짐
+        bufferedWriter.flush();
 
         Object resultMap = commonCodeOurService.insertAndGetList(params);
         modelAndView.addObject("resultMap", resultMap);
@@ -51,9 +52,24 @@ public class CommonCodeOurController {
         return modelAndView;
     }
 
+    @RequestMapping(value = {"/insertMulti"}, method = RequestMethod.POST) 
+    public ModelAndView insertMulti(MultipartHttpServletRequest multipartHttpServletRequest
+                    , @RequestParam Map<String, Object> params
+                    , ModelAndView modelAndView) throws IOException {
+        
+        modelAndView.setViewName("commonCode_our/list");
+        return modelAndView;
+    }
+
     @RequestMapping(value = {"/form"}, method = RequestMethod.GET)
     public ModelAndView form(@RequestParam Map<String, Object> params, ModelAndView modelAndView) {
         modelAndView.setViewName("commonCode_our/edit");    // edit화면 재사용
+        return modelAndView;
+    }
+
+    @RequestMapping(value = {"/formMulti"}, method = RequestMethod.GET)
+    public ModelAndView formMulti(@RequestParam Map<String, Object> params, ModelAndView modelAndView) {
+        modelAndView.setViewName("commonCode_our/editMulti");    // edit화면 재사용
         return modelAndView;
     }
 
