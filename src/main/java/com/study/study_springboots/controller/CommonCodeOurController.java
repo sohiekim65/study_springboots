@@ -87,9 +87,12 @@ public class CommonCodeOurController {
             // 이걸 모아서 뭉치로 묶어 params로 넣어야 한다. 3가지를 list로 넣고 각각을 map으로
             // 1. HashMap에 넣어주기
             attachfile = new HashMap<>();
+            attachfile.put("ATTACHFILE_SEQ", commonUtils.getUniqueSequence());
             attachfile.put("SOURCE_UNIQUE_SEQ", params.get("COMMON_CODE_ID"));
             attachfile.put("ORGINALFILE_NAME", originalFileName);
             attachfile.put("PHYSICALFILE_NAME", physicalFileName);
+            attachfile.put("REGISTER_SEQ", params.get("REGISTER_SEQ"));
+            attachfile.put("MODIFIER_SEQ", params.get("MODIFIER_SEQ"));
 
             // 2. ArrayList로 묶기
             attachfiles.add(attachfile);
