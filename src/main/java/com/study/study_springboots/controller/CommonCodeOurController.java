@@ -1,9 +1,14 @@
 package com.study.study_springboots.controller;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +26,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.study.study_springboots.service.CommonCodeOurService;
+import com.study.study_springboots.utils.CommonUtils;
 
 @Controller
 @RequestMapping(value = "/commonCodeOur")
@@ -28,6 +34,9 @@ public class CommonCodeOurController {
 
     @Autowired
     CommonCodeOurService commonCodeOurService; // DI
+
+    @Autowired
+    CommonUtils commonUtils;
 
     @RequestMapping(value = {"/insert"}, method = RequestMethod.POST) 
     public ModelAndView insert(MultipartHttpServletRequest multipartHttpServletRequest
@@ -56,6 +65,40 @@ public class CommonCodeOurController {
     public ModelAndView insertMulti(MultipartHttpServletRequest multipartHttpServletRequest
                     , @RequestParam Map<String, Object> params
                     , ModelAndView modelAndView) throws IOException {
+        
+        Iterator<String> fileNames = multipartHttpServletRequest.getFileNames(); // 파일 이름들 가져옴
+        String relativePath = "C:\\Develops\\study_springboots\\src\\main\\resources\\static\\files\\"; 
+
+        Map attachfile = null;
+        List attachfiles = new ArrayList();
+        String physicalFileName = commonUtils.getUniqueSequence(); // 공통으로 사용하는 거라 while문 밖으로 빼주기
+        String storePath = relativePath + physicalFileName + "\\";
+        File newPath = new File(storePath); // 파일 클래스의 mkdir 기능 사용하기 위해
+        newPath.mkdir();    // create directory
+        while(fileNames.hasNext()){ //hasNext --> 다음 값이 있느냐
+            String fileName = fileNames.next();
+            MultipartFile multipartFile =  multipartHttpServletRequest.getFile(fileName); 
+            String originalFileName = multipartFile.getOriginalFilename(); 
+            
+            String storePathFileName = storePath + originalFileName; // 저장할 path 이름
+            multipartFile.transferTo(new File(storePathFileName)); // relativePath 경로 설정
+            
+            // SOURCE_UNIQUE_SEQ, ORGINALFILE_NAME, PHYSICALFILE_NAME 이 3가지를 중점적으로 넣어야 한다
+            // 이걸 모아서 뭉치로 묶어 params로 넣어야 한다. 3가지를 list로 넣고 각각을 map으로
+            // 1. HashMap에 넣어주기
+            attachfile = new HashMap<>();
+            attachfile.put("SOURCE_UNIQUE_SEQ", params.get("COMMON_CODE_ID"));
+            attachfile.put("ORGINALFILE_NAME", originalFileName);
+            attachfile.put("PHYSICALFILE_NAME", physicalFileName);
+
+            // 2. ArrayList로 묶기
+            attachfiles.add(attachfile);
+
+        }
+        params.put("attachfiles", attachfiles);
+
+        Object resultMap = commonCodeOurService.insertWithFilesAndGetList(params);
+        modelAndView.addObject("resultMap", resultMap);
         
         modelAndView.setViewName("commonCode_our/list");
         return modelAndView;
