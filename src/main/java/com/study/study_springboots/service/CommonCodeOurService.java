@@ -1,5 +1,8 @@
 package com.study.study_springboots.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +12,20 @@ import com.study.study_springboots.dao.CommonCodeOurDao;
 public class CommonCodeOurService {
     @Autowired
     CommonCodeOurDao commonCodeOurDao;    // 레파지토리에 있는 Dao 연결
+
+    @Autowired
+    AttachFileService attachFileService;
+
+    // getOne과 AttachFiles 같이
+    public Object getOneWithAttachFiles(Object dataMap) {
+        // AttachFiles ArrayList<Map>를 찾아오기
+        Map<String, Object> result = new HashMap<String, Object>();
+        result.put("attachFiles", attachFileService.getList(dataMap)); // 없어지는 결과라 코드를 새로 넣어줌
+
+        // 기존 값 보존 위해, 사용 루핑을 안돌리는 방법으로 putAll해줌
+        result.putAll((Map)this.getOne(dataMap)); // commonCode에 대한 것만
+        return result;
+    }
     
     // 비즈니스
     // delete를 하면서 List를 뱉어내는 function
@@ -42,7 +59,8 @@ public class CommonCodeOurService {
     // 파일업로드하고 List를 뱉어내는 function
     public Object insertWithFilesAndGetList(Object dataMap) {
         // insert files
-        Object result = this.insertOne(dataMap);
+        Object result = attachFileService.insertMulti(dataMap);
+        result = this.insertOne(dataMap);
         result = this.getList(dataMap);
         return result;
     }

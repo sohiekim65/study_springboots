@@ -67,12 +67,12 @@ public class CommonCodeOurController {
                     , ModelAndView modelAndView) throws IOException {
         
         Iterator<String> fileNames = multipartHttpServletRequest.getFileNames(); // 파일 이름들 가져옴
-        String relativePath = "C:\\Develops\\study_springboots\\src\\main\\resources\\static\\files\\"; 
+        String absolutePath = commonUtils.getRelativeToAbsolutePath("src/main/resources/static/files/") ; 
 
         Map attachfile = null;
         List attachfiles = new ArrayList();
         String physicalFileName = commonUtils.getUniqueSequence(); // 공통으로 사용하는 거라 while문 밖으로 빼주기
-        String storePath = relativePath + physicalFileName + "\\";
+        String storePath = absolutePath + physicalFileName + File.separator;
         File newPath = new File(storePath); // 파일 클래스의 mkdir 기능 사용하기 위해
         newPath.mkdir();    // create directory
         while(fileNames.hasNext()){ //hasNext --> 다음 값이 있느냐
@@ -80,23 +80,25 @@ public class CommonCodeOurController {
             MultipartFile multipartFile =  multipartHttpServletRequest.getFile(fileName); 
             String originalFileName = multipartFile.getOriginalFilename(); 
             
-            String storePathFileName = storePath + originalFileName; // 저장할 path 이름
-            multipartFile.transferTo(new File(storePathFileName)); // relativePath 경로 설정
-            
-            // SOURCE_UNIQUE_SEQ, ORGINALFILE_NAME, PHYSICALFILE_NAME 이 3가지를 중점적으로 넣어야 한다
-            // 이걸 모아서 뭉치로 묶어 params로 넣어야 한다. 3가지를 list로 넣고 각각을 map으로
-            // 1. HashMap에 넣어주기
-            attachfile = new HashMap<>();
-            attachfile.put("ATTACHFILE_SEQ", commonUtils.getUniqueSequence());
-            attachfile.put("SOURCE_UNIQUE_SEQ", params.get("COMMON_CODE_ID"));
-            attachfile.put("ORGINALFILE_NAME", originalFileName);
-            attachfile.put("PHYSICALFILE_NAME", physicalFileName);
-            attachfile.put("REGISTER_SEQ", params.get("REGISTER_SEQ"));
-            attachfile.put("MODIFIER_SEQ", params.get("MODIFIER_SEQ"));
+            if(originalFileName != null && multipartFile.getSize() > 0) { // 방어처리
 
-            // 2. ArrayList로 묶기
-            attachfiles.add(attachfile);
-
+                String storePathFileName = storePath + originalFileName; // 저장할 path 이름
+                multipartFile.transferTo(new File(storePathFileName)); // relativePath 경로 설정
+                
+                // SOURCE_UNIQUE_SEQ, ORGINALFILE_NAME, PHYSICALFILE_NAME 이 3가지를 중점적으로 넣어야 한다
+                // 이걸 모아서 뭉치로 묶어 params로 넣어야 한다. 3가지를 list로 넣고 각각을 map으로
+                // 1. HashMap에 넣어주기
+                attachfile = new HashMap<>();
+                attachfile.put("ATTACHFILE_SEQ", commonUtils.getUniqueSequence());
+                attachfile.put("SOURCE_UNIQUE_SEQ", params.get("COMMON_CODE_ID"));
+                attachfile.put("ORGINALFILE_NAME", originalFileName);
+                attachfile.put("PHYSICALFILE_NAME", physicalFileName);
+                attachfile.put("REGISTER_SEQ", params.get("REGISTER_SEQ"));
+                attachfile.put("MODIFIER_SEQ", params.get("MODIFIER_SEQ"));
+                
+                // 2. ArrayList로 묶기
+                attachfiles.add(attachfile);
+            }
         }
         params.put("attachfiles", attachfiles);
 
@@ -160,6 +162,16 @@ public class CommonCodeOurController {
         Object resultMap = commonCodeOurService.getOne(params);
         modelAndView.addObject("resultMap", resultMap);
         modelAndView.setViewName("commonCode_our/edit");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = {"/editMulti/{uniqueId}"}, method = RequestMethod.GET) 
+    public ModelAndView editMulti(@RequestParam Map<String, Object> params, @PathVariable String uniqueId, ModelAndView modelAndView) {
+        params.put("COMMON_CODE_ID", uniqueId);
+        params.put("SOURCE_UNIQUE_SEQ", uniqueId);
+        Object resultMap = commonCodeOurService.getOneWithAttachFiles(params);
+        modelAndView.addObject("resultMap", resultMap);
+        modelAndView.setViewName("commonCode_our/editMulti");
         return modelAndView;
     }
 }
