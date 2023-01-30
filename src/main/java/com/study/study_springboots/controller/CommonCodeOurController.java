@@ -61,6 +61,23 @@ public class CommonCodeOurController {
         return modelAndView;
     }
 
+    @RequestMapping(value = {"/updateMulti"}, method = RequestMethod.POST)
+    public ModelAndView updateMulti(MultipartHttpServletRequest multipartHttpServletRequest, @RequestParam Map<String, Object> params, ModelAndView modelAndView) {
+        Iterator<String> fileNames = multipartHttpServletRequest.getFileNames(); // 파일 이름들 가져옴
+
+        while(fileNames.hasNext()){
+            String value = (String)params.get(fileNames.next());
+            System.out.println(value); // value가 있다는 소리 == DB에 저장이 되어있다.
+            if(value != null) {
+                // originalFilename 와 있는지 여부 확인
+            }
+        }
+
+        modelAndView.setViewName("commonCode_our/list");
+        return modelAndView;
+    }
+
+
     @RequestMapping(value = {"/insertMulti"}, method = RequestMethod.POST) 
     public ModelAndView insertMulti(MultipartHttpServletRequest multipartHttpServletRequest
                     , @RequestParam Map<String, Object> params
@@ -153,6 +170,14 @@ public class CommonCodeOurController {
         Object resultMap = commonCodeOurService.getList(params); // params가 서비스의 dataMap
         modelAndView.addObject("resultMap", resultMap);
         modelAndView.setViewName("commonCode_our/list");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = {"/listPagination"}, method = RequestMethod.GET)
+    public ModelAndView listPagination(@RequestParam Map<String, Object> params, ModelAndView modelAndView) {
+        Object resultMap = commonCodeOurService.getList(params); // params가 서비스의 dataMap
+        modelAndView.addObject("resultMap", resultMap);
+        modelAndView.setViewName("commonCode_our/list_pagination");
         return modelAndView;
     }
 

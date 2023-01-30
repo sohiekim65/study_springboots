@@ -39,6 +39,9 @@
       <div>
         <a href="/commonCodeOur/">CommonCodeOurController list /commonCodeOur/list.jsp</a>
       </div>
+      <div>
+        <a href="/commonCodeOur/listPagination">CommonCodeOurController listPagination /commonCodeOur/list_pagination.jsp</a>
+      </div>
     </div>
   </body>
 </html>
