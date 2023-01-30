@@ -24,7 +24,8 @@
 	</div>
 	<%-- pagination --%>
 	<nav aria-label="Page navigation example">
-		<span>총 갯수 : ${resultMap.total}</span>
+		<c:set var="paginations" value="${resultMap.paginations}" />
+		<span>총 갯수 : ${resultMap.paginations.totalCount}</span>
 		<ul class="pagination">
 			<li class="page-item">
 				<a class="page-link" href="#" aria-label="Previous">
