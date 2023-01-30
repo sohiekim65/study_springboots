@@ -40,7 +40,7 @@
         <a href="/commonCodeOur/">CommonCodeOurController list /commonCodeOur/list.jsp</a>
       </div>
       <div>
-        <a href="/commonCodeOur/listPagination">CommonCodeOurController listPagination /commonCodeOur/list_pagination.jsp</a>
+        <a href="/commonCodeOur/listPagination/1">CommonCodeOurController listPagination /commonCodeOur/list_pagination.jsp</a>
       </div>
     </div>
   </body>

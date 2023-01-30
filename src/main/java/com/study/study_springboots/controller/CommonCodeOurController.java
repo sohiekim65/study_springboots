@@ -173,9 +173,13 @@ public class CommonCodeOurController {
         return modelAndView;
     }
 
-    @RequestMapping(value = {"/listPagination"}, method = RequestMethod.GET)
-    public ModelAndView listPagination(@RequestParam Map<String, Object> params, ModelAndView modelAndView) {
-        Object resultMap = commonCodeOurService.getList(params); // params가 서비스의 dataMap
+    @RequestMapping(value = {"/listPagination/{currentPage}"}, method = RequestMethod.GET)
+    public ModelAndView listPagination(@RequestParam Map<String, Object> params
+                ,@PathVariable String currentPage, ModelAndView modelAndView) {
+        params.put("currentPage", Integer.parseInt(currentPage)); // 현재 페이지 xml에 넘겨주기
+        params.put("pageScale", 10); // 몇개씩 가져오는지
+        Object resultMap = commonCodeOurService.getListWithPagination(params);
+        // resultMap에는 total과 resultList라는 두 개의 묶음이 들어있다.
         modelAndView.addObject("resultMap", resultMap);
         modelAndView.setViewName("commonCode_our/list_pagination");
         return modelAndView;

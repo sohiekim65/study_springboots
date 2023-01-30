@@ -65,6 +65,21 @@ public class CommonCodeOurService {
         return result;
     }
 
+    // 0130 페이지네이션 total과 list
+    public Object getListWithPagination(Object dataMap) { 
+        Map<String, Object> result = new HashMap<String, Object>();
+        result.put("total", this.getTotal(dataMap));
+        result.put("resultList", this.getList(dataMap));
+        return result;
+    }
+
+    // 0130 페이지네이션 total
+    public Object getTotal(Object dataMap) {
+        String sqlMapId = "CommonCodeOur.selectTotal";
+        Object result = commonCodeOurDao.getOne(sqlMapId, dataMap);
+        return result;
+    }
+
     public Object getList(Object dataMap) { // dataMap은 브라우저에서 넘어오니까 파라미터로
         String sqlMapId = "CommonCodeOur.selectListByUID"; // 사용자가 넘겨주는 게 아니라 여기서 세팅
         Object result = commonCodeOurDao.getList(sqlMapId, dataMap);
