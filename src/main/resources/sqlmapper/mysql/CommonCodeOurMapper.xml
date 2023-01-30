@@ -14,7 +14,7 @@
         <if test="pageScale != null">
             ORDER BY COMMON_CODE_ID
             <!-- 첫번째 리스트 -->
-            LIMIT #{currentPage}, #{pageScale} 
+            LIMIT #{pageBegin}, #{pageScale} 
         </if>
     </select>
 

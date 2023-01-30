@@ -24,8 +24,8 @@
 	</div>
 	<%-- pagination --%>
 	<nav aria-label="Page navigation example">
-		<c:set var="paginations" value="${resultMap.paginations}" />
-		<span>총 갯수 : ${resultMap.paginations.totalCount}</span>
+		<c:set var="_pagination" value="${resultMap.paginations}" />
+		<span>총 갯수 : ${_pagination.totalCount}</span>
 		<ul class="pagination">
 			<li class="page-item">
 				<a class="page-link" href="#" aria-label="Previous">
@@ -33,13 +33,14 @@
 					<span class="sr-only">Previous</span>
 				</a>
 			</li>
-			<li class="page-item"><a class="page-link" href="/commonCodeOur/listPagination/1">1</a></li>
-			<li class="page-item"><a class="page-link" href="/commonCodeOur/listPagination/11">2</a></li>
-			<li class="page-item"><a class="page-link" href="/commonCodeOur/listPagination/21">3</a></li>
+			<%-- for(int i = 0; i > 9; i++){} --%>
+			<c:forEach var="i" begin="${_pagination.blockStart}" end="${_pagination.blockEnd}">
+				<li class="page-item"><a class="page-link" href="/commonCodeOur/listPagination/${i}">${i}</a></li>
+			</c:forEach>
 			<li class="page-item">
 				<a class="page-link" href="#" aria-label="Next">
-					<span aria-hidden="true">&raquo;</span>
 					<span class="sr-only">Next</span>
+					<span aria-hidden="true">&raquo;</span>
 				</a>
 			</li>
 		</ul>
